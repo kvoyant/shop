@@ -1,32 +1,53 @@
 import { useState } from 'react';
-import { Link, Route, Routes } from 'react-router-dom';
+import { Link, Outlet, Route, Routes, useNavigate } from 'react-router-dom';
 import data from './data';
 
 function App() {
   let [shoes] = useState(data);
+  let navigate = useNavigate();
   return (
-    <Routes>
-      <Route path="/" element={
-        <>
-          <div className='main-bg'></div>
-          <div className='container'>
-            <div className='row'>
-              {shoes.map((a, i) => {
-                return <Card shoes={shoes[i]} i={i + 1} key={i}></Card>
-              })}
+    <>
+      <button onClick={() => { navigate('/detail') }}>이동버튼</button>
+
+      <Routes>
+        <Route path="/" element={
+          <>
+            <div className='main-bg'></div>
+            <div className='container'>
+              <div className='row'>
+                {shoes.map((a, i) => {
+                  return <Card shoes={shoes[i]} i={i + 1} key={i}></Card>
+                })}
+              </div>
             </div>
-          </div>
-        </>
-      } />
-      <Route path="/detail" element={<div>상세페이지임</div>} />
-      <Route path="/about" element={<div>어바웃페이지임</div>} />
-    </Routes>
+          </>
+        } />
+        <Route path="/detail" element={<div>상세페이지임</div>} />
+
+        <Route path="/about" element={<About />}>
+          <Route path="member" element={<div>멤버들</div>} />
+          <Route path="location" element={<div>회사위치</div>} />
+        </Route>
+        
+        <Route path="*" element={<div>없는페이지임</div>} />
+      </Routes>
+
+    </>
   );
+}
+
+function About() {
+  return (
+    <div>
+      <h4>about페이지임</h4>
+      <Outlet></Outlet>
+    </div>
+  )
 }
 
 function Card(props) {
   return (
-    
+
     <div className="col-md-4">
       <img src={"https://codingapple1.github.io/shop/shoes" + props.i + ".jpg"} width="80%" />
       <h4>{props.shoes.title}</h4>
