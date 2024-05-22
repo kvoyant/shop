@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { Link, Outlet, Route, Routes, useNavigate } from 'react-router-dom';
 import data from './data';
+import Detail from './Detail';
 
 function App() {
   let [shoes] = useState(data);
   let navigate = useNavigate();
   return (
     <>
-      <button onClick={() => { navigate('/detail') }}>이동버튼</button>
+      {/* <button onClick={() => { navigate('/detail') }}>이동버튼</button> */}
 
       <Routes>
         <Route path="/" element={
@@ -22,7 +23,9 @@ function App() {
             </div>
           </>
         } />
-        <Route path="/detail" element={<div>상세페이지임</div>} />
+        
+        <Route path="/detail/:id" element={<Detail shoes={shoes}/>} />
+        {/* detail/아무거나 입력했을 때 <Detail> 컴포넌트 보여달라는 뜻*/}
 
         <Route path="/about" element={<About />}>
           <Route path="member" element={<div>멤버들</div>} />
@@ -35,7 +38,7 @@ function App() {
           <Route path="one" element={<p>첫 주문시 양배추즙 서비스</p>}></Route>
           <Route path="two" element={<p>생일기념 쿠폰받기</p>}></Route>
         </Route>
-        
+
       </Routes>
 
     </>
