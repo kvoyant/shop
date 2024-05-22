@@ -1,4 +1,16 @@
 import { useParams } from "react-router-dom";
+import styled from 'styled-components';
+
+let Box = styled.div`
+    padding: 20px;
+    color: grey;
+`;
+
+let YellowBtn = styled.button`
+    background: ${ props => props.bg};
+    color: ${ props => props.bg === 'blue' ? 'white' : 'black'};
+    padding: 10px;
+`;
 
 const Detail = (props) => {
     let {id} = useParams();
@@ -26,6 +38,13 @@ const Detail = (props) => {
                     <p>{찾은상품.price}원</p>
                     <button className="btn btn-danger">주문하기</button>
                 </div>
+            </div>
+            <div>
+                <Box>
+                    <YellowBtn bg="yellow">버튼</YellowBtn>
+                    <YellowBtn bg="red">버튼</YellowBtn>
+                    <YellowBtn bg="blue">버튼</YellowBtn>
+                </Box>
             </div>
         </div>
     );
