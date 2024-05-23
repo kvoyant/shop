@@ -17,7 +17,16 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 
 let user1 = createSlice({
     name: 'user',
-    initialState: 'kim',
+    initialState: {name: 'kim', age: 20 },
+    // initialState: 'kim',
+    reducers: {
+        changeName(state) {
+            return 'john ' + state
+        },
+        increase(state, a) {
+            state.age += a.payload
+        }
+    }
 })
 
 let cart = createSlice({
@@ -34,3 +43,12 @@ export default configureStore({
         cart2: cart.reducer
     }
 })
+
+export let { changeName, increase } = user1.actions;
+
+/**
+(참고)
+- a 말고 action 이런 식으로 작명 많이 합니다. 
+- action.type 하면 state변경함수 이름이 나오고
+- action.payload 하면 파라미터가 나옵니다. 
+ */

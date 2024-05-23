@@ -1,12 +1,16 @@
 import { Table } from "react-bootstrap";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { changeName, increase } from "./store";
 
 const Cart = () => {
     let state = useSelector((state) => { return state })//warn
     // let a = useSelector((state) => state.user2 )
     console.log('state :', state)
 
+    let dispatch = useDispatch();
+
     return (
+        <>
         <Table>
             <thead>
                 <tr>
@@ -29,6 +33,14 @@ const Cart = () => {
                 }
             </tbody>
         </Table>
+        <button onClick={() => { 
+             dispatch(changeName())
+             }}>changeName 버튼</button>
+
+        <button onClick={() => { 
+             dispatch(increase(10))
+             }}>increase 버튼</button>
+        </>
     );
 };
 
