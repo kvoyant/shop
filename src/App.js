@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Link, Outlet, Route, Routes, useNavigate } from 'react-router-dom';
 import data from './data';
 import Detail from './Detail';
+import Cart from './Cart';
 
 function App() {
   let [shoes] = useState(data);
@@ -38,6 +39,8 @@ function App() {
           <Route path="one" element={<p>첫 주문시 양배추즙 서비스</p>}></Route>
           <Route path="two" element={<p>생일기념 쿠폰받기</p>}></Route>
         </Route>
+
+        <Route path="/cart" element={<Cart />}></Route>
 
       </Routes>
 
