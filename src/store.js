@@ -34,7 +34,18 @@ let cart = createSlice({
     initialState: [
         {id: 0, name: 'White and Black', count: 2},
         {id: 2, name: 'Grey Yordan', count: 1}
-    ]
+    ],
+    reducers: {
+        addCount(state, action) {
+            // state[action.payload].count++
+            let 번호 = state.findIndex((a) => { return a.id === action.payload })//"payload와 같은 id를 가진 상품을 찾아서 +1 해달라
+            // console.log('번호:', 번호);// 0 or 1 (index 순서값)
+            state[번호].count++
+        },
+        addItem(state, action) {
+            state.push(action.payload)
+        }
+    }
 })
 
 export default configureStore({
@@ -45,6 +56,7 @@ export default configureStore({
 })
 
 export let { changeName, increase } = user1.actions;
+export let { addCount } = cart.actions;
 
 /**
 (참고)
