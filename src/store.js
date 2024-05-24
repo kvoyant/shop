@@ -56,7 +56,7 @@ export default configureStore({
 })
 
 export let { changeName, increase } = user1.actions;
-export let { addCount } = cart.actions;
+export let { addCount, addItem } = cart.actions;
 
 /**
 (참고)
